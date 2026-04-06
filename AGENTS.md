@@ -28,9 +28,20 @@ A reusable **ReAct-style agent loop**:
 - Chooses between “think / act / observe” style steps (implementation details may vary, but the loop is the product).
 - Orchestrates tool calls and feeds observations back into the next reasoning step.
 
+- **Agent**: `src/agent/agent.ts`
+- **Middleware**: `src/agent/agent-middleware.ts`
+- **Skills**: `src/agent/skills/*`
+
 This layer should depend only on `foundation`, and remain generic (not coding-specific).
 
-### 3) `community` (in-repo integrations)
+### 3) `coding`
+
+A layer for coding-specific agents and tools.
+
+- **Leading Agent**: `src/coding/agents/lead-agent.ts`, `createCodingAgent()`
+- **Tools**: `src/coding/tools/*`, including `bash`, `read_file`, `write_file`, `str_replace`
+
+### 4) `community` (in-repo integrations)
 
 In-repo integrations live under `src/community/*`.
 
