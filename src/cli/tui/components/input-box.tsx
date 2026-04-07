@@ -16,11 +16,9 @@ const WELCOME_MESSAGES = [
 ];
 
 export function InputBox({
-  disabled,
   onSubmit,
   onAbort,
 }: {
-  disabled?: boolean;
   // eslint-disable-next-line no-unused-vars
   onSubmit?: (text: string) => void;
   onAbort?: () => void;
@@ -28,7 +26,6 @@ export function InputBox({
   const [firstMessage, setFirstMessage] = useState(true);
   const [text, setText] = useState("");
   const handleChange = (text: string) => {
-    if (disabled) return;
     setText(text);
   };
   useInput(
@@ -37,7 +34,7 @@ export function InputBox({
         onAbort?.();
       }
     },
-    { isActive: !!disabled },
+    { isActive: true },
   );
 
   const handleSubmit = () => {
@@ -55,7 +52,6 @@ export function InputBox({
     >
       <Text>❯</Text>
       <TextInput
-        showCursor={!disabled}
         placeholder={
           firstMessage
             ? WELCOME_MESSAGES[Math.floor(Math.random() * WELCOME_MESSAGES.length)]

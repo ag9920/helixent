@@ -22,13 +22,13 @@ function useAgent(): Agent {
 export function useAgentLoop() {
   const agent = useAgent();
 
-  const [loading, setLoading] = useState(false);
+  const [streaming, setStreaming] = useState(false);
   const [messages, setMessages] = useState<NonSystemMessage[]>([]);
 
-  const loadingRef = useRef(loading);
+  const streamingRef = useRef(streaming);
   useEffect(() => {
-    loadingRef.current = loading;
-  }, [loading]);
+    streamingRef.current = streaming;
+  }, [streaming]);
 
   const abort = useCallback(() => {
     agent.abort();
@@ -46,8 +46,8 @@ export function useAgentLoop() {
         return;
       }
 
-      if (loadingRef.current) return;
-      setLoading(true);
+      if (streamingRef.current) return;
+      setStreaming(true);
 
       try {
         const userMessage: UserMessage = { role: "user", content: [{ type: "text", text }] };
@@ -61,13 +61,13 @@ export function useAgentLoop() {
         if (isAbortError(error)) return;
         throw error;
       } finally {
-        setLoading(false);
+        setStreaming(false);
       }
     },
     [agent],
   );
 
-  return { agent, loading, messages, onSubmit, abort };
+  return { agent, streaming, messages, onSubmit, abort };
 }
 
 function isAbortError(error: unknown): boolean {

@@ -2,18 +2,24 @@ import { Box } from "ink";
 
 import { Header } from "./components/header";
 import { InputBox } from "./components/input-box";
-import { LoadingIndicator } from "./components/loading-indicator";
 import { MessageHistory } from "./components/message-history";
+import { StreamingIndicator } from "./components/streaming-indicator";
 import { useAgentLoop } from "./hooks/use-agent-loop";
 
 export function App() {
-  const { loading, messages, onSubmit, abort } = useAgentLoop();
+  const { streaming, messages, onSubmit, abort } = useAgentLoop();
   return (
     <Box flexDirection="column" rowGap={1} width="100%">
       <Header />
-      <MessageHistory messages={messages} isBusy={loading} />
-      <LoadingIndicator loading={loading} />
-      <InputBox disabled={loading} onSubmit={onSubmit} onAbort={abort} />
+      <MessageHistory messages={messages} streaming={streaming} />
+      <StreamingIndicator streaming={streaming} />
+      <InputBox
+        onSubmit={async (text) => {
+          if (streaming) return;
+          await onSubmit(text);
+        }}
+        onAbort={abort}
+      />
     </Box>
   );
 }

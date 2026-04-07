@@ -16,8 +16,8 @@ const LOADING_MESSAGES = [
 
 const SPINNER_TYPES = ["dots", "dots2", "dots3", "dots13", "dots8Bit", "sand", "rollingLine", "pipe", "triangle"];
 
-export function LoadingIndicator({ loading }: { loading: boolean }) {
-  if (!loading) return null;
+export function StreamingIndicator({ streaming }: { streaming: boolean }) {
+  if (!streaming) return null;
   return (
     <Box gap={1}>
       <Text color={currentTheme.colors.primary}>
