@@ -15,7 +15,7 @@ async function setup() {
     apiKey: process.env.ARK_API_KEY,
   });
 
-  const model = new Model("ep-20260311141959-w8cpr", provider, {
+  const model = new Model(process.env.ARK_MODEL_NAME ?? "", provider, {
     max_tokens: 16 * 1024,
     thinking: {
       type: "enabled",

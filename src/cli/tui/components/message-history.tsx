@@ -25,9 +25,11 @@ export function MessageHistory({ messages }: { messages: NonSystemMessage[]; isB
 
 export function UserMessageItem({ message }: { message: UserMessage }) {
   return (
-    <Box columnGap={1} backgroundColor="grey" width="100%">
-      <Text color="grey">❯</Text>
-      <Text>{message.content.map((content) => (content.type === "text" ? content.text : "[image]")).join("\n")}</Text>
+    <Box columnGap={1} width="100%" backgroundColor={currentTheme.colors.secondaryBackground}>
+      <Text color="white" bold>❯</Text>
+      <Text color="white">
+        {message.content.map((content) => (content.type === "text" ? content.text : "[image]")).join("\n")}
+      </Text>
     </Box>
   );
 }

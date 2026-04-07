@@ -4,6 +4,7 @@ export const defaultTheme = {
     highlightedText: "white",
     secondaryText: "gray",
     borderColor: "gray",
+    secondaryBackground: "#3a3a3a",
   },
 };
 
