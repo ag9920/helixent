@@ -42,7 +42,7 @@ export function InputBox({ disabled, onSubmit }: { disabled?: boolean; onSubmit?
         placeholder={
           firstMessage
             ? WELCOME_MESSAGES[Math.floor(Math.random() * WELCOME_MESSAGES.length)]
-            : "Input anything to continue, or launch a new command or skill by typing `/`"
+            : "Input anything to continue. Launch a new command or skill by typing `/`"
         }
         value={text}
         onChange={handleChange}
