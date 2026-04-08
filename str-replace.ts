@@ -1,4 +1,4 @@
-import { exists, mkdir } from "node:fs/promises";
+import { mkdir } from "node:fs/promises";
 import { parse } from "node:path";
 
 import z from "zod";
@@ -57,7 +57,7 @@ export const strReplaceTool = defineTool({
       updated = text.split(old).join(replacement);
     } else {
       let remaining = count;
-      updated = text.replaceAll(old, (match) => {
+      updated = text.replaceAll(old, (match: string) => {
         if (remaining <= 0) return match;
         remaining--;
         return replacement;
@@ -70,9 +70,7 @@ export const strReplaceTool = defineTool({
 
     // Make sure the parent directory exists
     const parentDir = parse(path).dir;
-    if (!(await exists(parentDir))) {
-      await mkdir(parentDir, { recursive: true });
-    }
+    await mkdir(parentDir, { recursive: true });
 
     await file.write(updated);
     return { ok: true as const, path, replacements, changed: true as const };
