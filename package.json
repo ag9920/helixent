@@ -34,6 +34,7 @@
     "prepublishOnly": "bun run build:bin",
     "release:patch": "npm version patch && npm publish",
     "release:minor": "npm version minor && npm publish",
+    "hooks:install": "git config core.hooksPath .githooks",
     "build:bin": "rm -rf dist/bin && bun build index.ts --compile --outfile dist/bin/helixent",
     "build:js": "rm -rf dist/js && bun build ./src/index.ts --outdir ./dist/js --splitting --target bun",
     "check": "tsc --noEmit && eslint . --ext .ts",

@@ -3,6 +3,7 @@
 # Helixent
 
 [![npm](https://img.shields.io/npm/v/helixent?label=npm&logo=npm&color=CB3837)](https://www.npmjs.com/package/helixent)
+[![Check](https://github.com/magiccube/helixent/actions/workflows/check.yml/badge.svg?branch=main)](https://github.com/magiccube/helixent/actions/workflows/check.yml)
 [![Bun](https://img.shields.io/badge/Bun-000000?logo=bun&logoColor=ffffff)](https://bun.com)
 [![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?logo=typescript&logoColor=ffffff)](https://www.typescriptlang.org)
 [![Ink](https://img.shields.io/badge/Ink-000000?logo=npm&logoColor=ffffff)](https://github.com/vadimdemedes/ink)
@@ -148,6 +149,8 @@ This section shows how to build Helixent from source and link the `helixent` CLI
 ```bash
 bun install
 ```
+
+All pushes and pull requests run `bun run check` in GitHub Actions. Local commits are also blocked by the pre-commit hook until the same check passes.
 
 #### 2. Run in Development Mode
 
